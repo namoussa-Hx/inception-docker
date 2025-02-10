@@ -20,6 +20,8 @@ services:
       - ./web:/var/www/html
     depends_on:
       - mariadb
+    env_file:
+      - .env
     networks:
       inception:
   mariadb:
@@ -29,6 +31,8 @@ services:
       - ./database:/var/lib/mysql
     networks:
       inception:
+    env_file:
+      - .env
 networks:
   inception:
     driver: bridge

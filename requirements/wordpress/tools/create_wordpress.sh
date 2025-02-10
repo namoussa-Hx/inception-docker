@@ -20,7 +20,8 @@ sed -i "s/database_name_here/$WP_DATABASE_NAME/g" wp-config-sample.php
 
 cp wp-config-sample.php wp-config.php
 
-wp config create --dbname=$WP_DATABASE_NAME --dbuser=$WP_DATABASE_USR --dbpass=$WP_DATABASE_PWD --dbhost=$MYSQL_HOSTNAME --allow-root
+#wp config create --dbname=$WP_DATABASE_NAME --dbuser=$WP_DATABASE_USR --dbpass=$WP_DATABASE_PWD --dbhost=$MYSQL_HOSTNAME --allow-root
+#wp config create --dbname=wordpress --dbuser=najib --dbpass=najib123 --dbhost=mariadb --allow-root
 wp core install --url=$DOMAIN_NAME --title=$WP_TITL --admin_user=$WP_ADMIN_USR --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL  --allow-root
 wp plugin update --all --allow-root
 

@@ -1,41 +1,41 @@
-FROM debian:buster
+FROM debian:bookworm
 
-RUN apt-get update && apt-get -y install \
-	wget \
-	curl \
-	bash \
-	php \
-	php-cgi \
-	php-mysql \
-	php-fpm \
-	php-pdo \
-	php-gd php-cli \
-	php-mbstring \
-	redis \
-	php-redis \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    bash \
+    php8.2 \
+    php8.2-fpm \
+    php8.2-mysql \
+    php8.2-pdo \
+    php8.2-gd \
+    php8.2-cli \
+    php8.2-mbstring \
+    redis \
+    php8.2-redis \
+    && rm -rf /var/lib/apt/lists/*
 
-# I need to install wp_cli command and put it in the right directory /usr/local/bin
+# Install WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-  && chmod +x wp-cli.phar \
-  && mv wp-cli.phar /usr/local/bin/wp
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
 
-# Copy the .conf in the html directory
-COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
+# Copy the PHP configuration
+COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/
 
-#Create the folder to enable php start
+# Create PHP run directory
 RUN mkdir -p /run/php
 
-#We go the html directory
+# Set working directory
 WORKDIR /var/www/html/
 
-#We expose the 9000 port
+# Expose PHP-FPM port
 EXPOSE 9000
 
-#we copy the script, give the right to launch it in local on our computer
+# Copy WordPress installation script
 COPY ./tools/create_wordpress.sh /usr/local/bin/
-
 RUN chmod +x /usr/local/bin/create_wordpress.sh
 
 ENTRYPOINT ["/usr/local/bin/create_wordpress.sh"]
+
 

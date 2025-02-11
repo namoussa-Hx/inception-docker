@@ -44,6 +44,7 @@ server {
 	index index.php index.html index.htm index.nginx-debian.html;
 
 	server_name namoussa.42.fr;
+	
 	server_tokens off;
 	ssl_certificate /etc/ssl/namoussa.42.fr.pem;
 	ssl_certificate_key /etc/ssl/namoussa.42.fr.key;

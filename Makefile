@@ -11,7 +11,7 @@ all: up hosts
 
 .PHONY: up
 up:
-	$(COMPOSE) up -d
+	$(COMPOSE) up 
 
 
 .PHONY: down
@@ -20,7 +20,7 @@ down:
 
 
 .PHONY: restart
-restart: down up
+restart: down up -d
 
 
 .PHONY: hosts

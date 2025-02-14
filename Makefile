@@ -11,7 +11,7 @@ all: up hosts
 
 .PHONY: up
 up:
-	$(COMPOSE) up 
+	$(COMPOSE) up -d
 
 
 .PHONY: down

@@ -61,20 +61,16 @@ services:
     volumes:
     - ./web:/var/www/html
   adminer:
-    build:
-      context: ./requirements/adminer
-      dockerfile: Dockerfile
+    container_name: adminer
+    build: ./requirements/adminer/
+    restart: always
     depends_on:
       - mariadb
-      - wordpress
-    container_name: adminer
-    restart: always
-    ports:
-      - "8080:8080"
     networks:
       inception:
-    # volumes:
-    #   - ./web:/var/www/html
+    ports:
+      - "8080:8080"
+
 networks:
   inception:
     driver: bridge

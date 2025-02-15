@@ -1,9 +1,8 @@
-
 COMPOSE = docker compose
 DOMAIN = namoussa.42.fr
 IP = 127.0.0.1
 HOSTS_FILE = /etc/hosts
-
+SRC_DIR = srcs
 
 .PHONY: all
 all: up hosts
@@ -11,16 +10,16 @@ all: up hosts
 
 .PHONY: up
 up:
-	$(COMPOSE) up -d
+	cd $(SRC_DIR) && $(COMPOSE) up -d
 
 
 .PHONY: down
 down:
-	$(COMPOSE) down
+	cd $(SRC_DIR) && $(COMPOSE) down
 
 
 .PHONY: restart
-restart: down up -d
+restart: down up
 
 
 .PHONY: hosts
@@ -40,3 +39,4 @@ clean_hosts:
 
 .PHONY: clean
 clean: down clean_hosts
+

@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY /conf/vsftpd.conf /etc/vsftpd.conf
 
-COPY entrypoint.sh /entrypoint.sh
+COPY /tools/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
 

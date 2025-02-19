@@ -10,14 +10,15 @@ services:
     ports:
       - "443:443"
     volumes:
-      - ./web:/var/www/html
+      - wordpress_data:/var/www/html
     networks:
-      inception:
+      - inception
+
   wordpress:
     build: requirements/wordpress/
     container_name: wordpress
     volumes:
-      - ./web:/var/www/html
+      - wordpress_data:/var/www/html
     depends_on:
       - mariadb
       - redis
@@ -26,18 +27,20 @@ services:
     env_file:
       - .env
     networks:
-      inception:
+      - inception
+
   mariadb:
     build: requirements/mariadb/
     container_name: mariadb
     volumes:
-      - ./database:/var/lib/mysql
+      - database:/var/lib/mysql
     networks:
-      inception:
+      - inception
     ports:
       - "3306:3306"
     env_file:
       - .env
+
   redis:
     build: requirements/bonus/redis/
     container_name: redis
@@ -45,7 +48,7 @@ services:
     ports:
       - "6379:6379"
     networks:
-      inception:
+      - inception
 
   ftp:
     depends_on:
@@ -59,11 +62,12 @@ services:
       - "21:21"
       - "10000-10100:10000-10100"
     networks:
-      inception:
+      - inception
     env_file:
       - .env
     volumes:
-    - ./web:/var/www/html
+      - wordpress_data:/var/www/html
+
   adminer:
     container_name: adminer
     build: requirements/bonus/adminer/
@@ -71,9 +75,10 @@ services:
     depends_on:
       - mariadb
     networks:
-      inception:
+      - inception
     ports:
       - "8080:8080"
+
   portainer:
     container_name: portainer
     build: requirements/bonus/portainer/
@@ -83,17 +88,26 @@ services:
     depends_on:
       - wordpress
     networks:
-      inception:
+      - inception
     ports:
       - "9443:9443"
+
   portfolio:
     build: requirements/bonus/site/ 
     container_name: portfolio
     networks:
-      inception:
+      - inception
     ports:
       - "8081:80"
     restart: always
+
+volumes:
+  wordpress_data:
+    name: wordpress_data
+  database:
+    name: database
+
 networks:
   inception:
     driver: bridge
+

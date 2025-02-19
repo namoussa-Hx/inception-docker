@@ -45,11 +45,11 @@ server {
 
 	server_name namoussa.42.fr;
 	
-	server_tokens off;
+	
 	ssl_certificate /etc/ssl/namoussa.42.fr.pem;
 	ssl_certificate_key /etc/ssl/namoussa.42.fr.key;
 	ssl_protocols TLSv1.2 TLSv1.3;
-	ssl_prefer_server_ciphers off;
+	
 
 	location / {
 		# First attempt to serve request as file, then

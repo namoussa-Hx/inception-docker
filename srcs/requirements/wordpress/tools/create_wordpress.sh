@@ -1,8 +1,7 @@
 #!/bin/sh
 
-# until mysqladmin ping -h"$MYSQL_HOSTNAME" --silent; do
-#     sleep 2
-# done
+sleep 3
+
 
 mkdir -p /var/www/html
 cd /var/www/html

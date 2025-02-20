@@ -11,7 +11,7 @@ RUN mkdir -p /etc/ssl
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
      -out /etc/ssl/namoussa.42.fr.pem \
      -keyout /etc/ssl/namoussa.42.fr.key \
-     -subj "/C=FR/ST=Paris/L=Paris/O=42 School/OU=namoussa/CN=namoussa.42.fr"
+     -subj "/C=FR/ST=BEN GUERIR/L=BEN GUERIR/O=1337 School/OU=namoussa/CN=namoussa.42.fr"
 
 COPY ./conf/default /etc/nginx/sites-available/
 

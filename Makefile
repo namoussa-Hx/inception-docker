@@ -1,4 +1,4 @@
-COMPOSE = docker compose
+COMPOSE = docker-compose
 DOMAIN = namoussa.42.fr
 IP = 127.0.0.1
 HOSTS_FILE = /etc/hosts

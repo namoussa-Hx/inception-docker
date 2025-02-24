@@ -32,7 +32,6 @@ wp config set WP_REDIS_DATABASE 0 --allow-root
 wp config set WP_REDIS_MAXTTL 3600 --allow-root
 wp config set WP_REDIS_TIMEOUT 1 --allow-root
 wp config set WP_REDIS_READ_TIMEOUT 1 --allow-root
-wp config set WP_REDIS_PREFIX "wp_" --allow-root
 
 wp redis enable --allow-root
 
